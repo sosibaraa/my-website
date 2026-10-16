@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Website | براء - البورتفوليو الشخصي</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts (Cairo & Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900;1000&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        sopBg: '#0f0f12',
+                        sopCard: '#18181c',
+                        sopCardBorder: '#27272a',
+                        sopHeader: '#1e1e22',
+                        sopBlue: '#3b82f6',
+                        sopBlueGlow: '#2563eb'
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        jakarta: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f0f12;
+            color: #f4f4f5;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background-color: #f1f5f9 !important;
+            color: #0f172a !important;
+        }
+        body.light-mode .sop-card-bg {
+            background-color: #ffffff !important;
+            border-color: #e2e8f0 !important;
+            color: #0f172a !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        body.light-mode .sop-pill {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+        body.light-mode h1, 
+        body.light-mode h2, 
+        body.light-mode h3, 
+        body.light-mode .text-white {
+            color: #0f172a !important;
+        }
+        body.light-mode .text-zinc-400, 
+        body.light-mode .text-zinc-300 {
+            color: #475569 !important;
+        }
+        body.light-mode .bg-zinc-900,
+        body.light-mode .bg-zinc-950 {
+            background-color: #f8fafc !important;
+            border-color: #e2e8f0 !important;
+            color: #0f172a !important;
+        }
+
+        .sop-glow-btn {
+            background-color: #3b82f6;
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .sop-glow-btn:hover {
+            box-shadow: 0 0 35px rgba(59, 130, 246, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .sop-pill {
+            background: rgba(30, 30, 34, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid #27272a;
+        }
+
+        .sop-card-bg {
+            background-color: #18181c;
+            border: 1px solid #27272a;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sopBlue selection:text-white pt-24 pb-28">
+
+    <!-- Top SOP Floating Capsule Header -->
+    <header class="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
+        <div class="sop-pill rounded-full px-5 py-2.5 flex items-center justify-between gap-6 shadow-2xl border border-zinc-800/80">
+            
+            <!-- Language Switcher Button -->
+            <button type="button" onclick="toggleLanguageModal()" class="flex items-center gap-1.5 bg-zinc-900/90 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/60 px-3 py-1 rounded-full text-xs font-bold transition-all active:scale-95 cursor-pointer">
+                <span id="currentLangLabel">En</span>
+                <i class="fa-solid fa-globe text-sopBlue text-xs"></i>
+            </button>
+
+            <!-- Main Logo -->
+            <a href="#" class="font-black text-lg tracking-widest text-white font-jakarta flex items-center gap-1">
+                B A R A A
+            </a>
+
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl mx-auto w-full px-4 space-y-12">
+
+        <!-- Hero Card Section -->
+        <section id="hero" class="pt-4">
+            <div class="sop-card-bg rounded-[32px] p-6 sm:p-12 relative overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 border border-zinc-800">
+                
+                <!-- SOP Cute Mascot SVG -->
+                <div class="relative shrink-0 flex items-center justify-center">
+                    <div class="w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-[#202025] flex items-center justify-center p-4 border border-zinc-800 shadow-inner">
+                        <svg class="w-full h-full text-white" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Character Body -->
+                            <path d="M100 45C65 45 40 70 40 115C40 155 65 175 100 175C135 175 160 155 160 115C160 70 135 45 100 45Z" fill="#FFFFFF" stroke="#000000" stroke-width="5" stroke-linejoin="round"/>
+                            <!-- Sprout / Leaf on Top -->
+                            <path d="M100 45C100 30 115 20 125 22C125 32 112 42 100 45Z" fill="#22C55E" stroke="#000000" stroke-width="4"/>
+                            <path d="M100 45C95 32 82 25 72 30C75 40 88 45 100 45Z" fill="#16A34A" stroke="#000000" stroke-width="4"/>
+                            <!-- Eyes -->
+                            <ellipse cx="75" cy="100" rx="6" ry="12" fill="#000000"/>
+                            <ellipse cx="125" cy="100" rx="6" ry="12" fill="#000000"/>
+                            <!-- Cheeks -->
+                            <ellipse cx="65" cy="115" rx="7" ry="4" fill="#FF8888" opacity="0.6"/>
+                            <ellipse cx="135" cy="115" rx="7" ry="4" fill="#FF8888" opacity="0.6"/>
+                            <!-- Smile Mouth -->
+                            <path d="M88 122C88 122 94 130 100 130C106 130 112 122 112 122" stroke="#000000" stroke-width="4" stroke-linecap="round"/>
+                            <!-- Cute Arms -->
+                            <path d="M42 120C32 130 35 145 45 140" stroke="#000000" stroke-width="5" stroke-linecap="round" fill="none"/>
+                            <path d="M158 120C168 130 165 145 155 140" stroke="#000000" stroke-width="5" stroke-linecap="round" fill="none"/>
+                            <!-- Cute Legs -->
+                            <path d="M75 173V185" stroke="#000000" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M125 173V185" stroke="#000000" stroke-width="6" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Text Bio & Action Button -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-right space-y-4 flex-grow">
+                    <span class="text-zinc-400 font-bold text-lg sm:text-xl" id="greetingText">مرحباً، اسمي</span>
+                    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight" id="heroName">براء</h1>
+                    <p class="text-zinc-400 font-bold text-sm sm:text-base" id="heroSub">مطور ألعاب | صانع محتوى | مبرمج</p>
+                    
+                    <div class="pt-4 flex items-center gap-4">
+                        <a href="#projects" class="sop-glow-btn px-8 py-3.5 rounded-2xl font-black text-sm sm:text-base flex items-center gap-2">
+                            <span id="exploreBtnText">إستكشف مشاريعي</span>
+                        </a>
+                    </div>
+
+                    <!-- Watermark Tag -->
+                    <div class="pt-6 text-zinc-500 text-xs font-bold flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                        <span id="watermarkText">صنع بواسطة Sop</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="pt-6">
+            <div class="sop-card-bg rounded-[32px] p-6 sm:p-8 border border-zinc-800 space-y-6">
+                
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-zinc-800 pb-5">
+                    <div>
+                        <h2 class="text-2xl font-black text-white flex items-center gap-2">
+                            <span id="projectsTitle">مشاريعي</span>
+                            <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/30 px-2.5 py-0.5 rounded-full font-bold">Games</span>
+                        </h2>
+                        <p class="text-zinc-400 text-xs mt-1" id="projectsSub">قائمة بالألعاب والمشاريع التفاعلية الخاصة بي</p>
+                    </div>
+
+                    <button id="openModalBtn" onclick="openModal()" class="sop-glow-btn px-5 py-2.5 rounded-xl flex items-center gap-2 text-xs font-black cursor-pointer shrink-0">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                        <span id="addGameBtnText">إضافة لعبة</span>
+                    </button>
+                </div>
+
+                <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+                
+                <div id="emptyProjectsState" class="text-center py-12 px-4 rounded-2xl border border-dashed border-zinc-800 bg-zinc-950/40">
+                    <div class="w-12 h-12 bg-zinc-900 rounded-xl flex items-center justify-center mx-auto mb-3 text-sopBlue text-xl border border-zinc-800">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-zinc-200" id="emptyTitle">لا توجد مشاريع مضافة حالياً</h3>
+                    <p class="text-zinc-400 text-xs mt-1 mb-5" id="emptySub">اضغط على زر (+ إضافة لعبة) لإضافة أول لعبة خاصة بك بسهولة</p>
+                    <button onclick="openModal()" class="bg-zinc-800 hover:bg-zinc-700 text-sopBlue font-bold px-4 py-2 rounded-xl text-xs inline-flex items-center gap-2 border border-zinc-700">
+                        <i class="fa-solid fa-plus"></i> <span id="emptyBtnText">إضافة لعبة الآن</span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- AI Chat Section -->
+        <section id="ai-chat" class="pt-6">
+            <div class="sop-card-bg rounded-[32px] p-6 sm:p-8 border border-zinc-800 space-y-4">
+                
+                <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-sopBlue text-lg">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-black text-white" id="aiTitle">شات براء AI</h2>
+                            <p class="text-zinc-400 text-xs" id="aiSub">المساعد الذكي لبراء للإجابة عن أسئلة الموقع والبرمجة</p>
+                        </div>
+                    </div>
+
+                    <button onclick="clearChatHistory()" class="text-xs text-zinc-400 hover:text-red-400 bg-zinc-900 px-3 py-1.5 rounded-xl border border-zinc-800 transition-colors flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span class="hidden sm:inline font-bold" id="resetChatText">إعادة الشات</span>
+                    </button>
+                </div>
+
+                <div class="bg-zinc-950/60 rounded-2xl overflow-hidden flex flex-col h-[420px] border border-zinc-800">
+                    
+                    <div id="chatMessages" class="flex-grow p-4 overflow-y-auto space-y-4 text-xs">
+                        <div class="flex gap-3 max-w-[90%] items-start">
+                            <div class="w-8 h-8 rounded-xl bg-sopBlue text-white flex items-center justify-center font-black shrink-0">
+                                ب
+                            </div>
+                            <div class="bg-zinc-900 border border-zinc-800 text-zinc-200 p-3.5 rounded-2xl rounded-tr-none leading-relaxed space-y-1">
+                                <p class="font-extrabold text-sopBlue">مرحباً بك! 🎮</p>
+                                <p id="welcomeMsg">أنا **المساعد الذكي براء** 🤖. كيف يمكنني مساعدتك اليوم بخصوص الموقع أو ألعاب سكراتش؟</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="chatTypingIndicator" class="hidden px-4 py-2 flex items-center gap-2 text-xs text-sopBlue font-bold bg-zinc-900/50">
+                        <div class="w-2 h-2 rounded-full bg-sopBlue animate-ping"></div>
+                        <span id="typingText">جاري صياغة الإجابة...</span>
+                    </div>
+
+                    <div class="bg-zinc-900 border-t border-zinc-800 p-2.5">
+                        <form onsubmit="handleChatSubmit(event)" class="flex items-center gap-2">
+                            <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا..." 
+                                   class="flex-grow bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white text-xs focus:outline-none focus:border-sopBlue">
+                            <button type="submit" class="sop-glow-btn px-4 py-2.5 rounded-xl text-xs font-black shrink-0 cursor-pointer">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="pt-6">
+            <div class="sop-card-bg rounded-[32px] p-6 sm:p-8 border border-zinc-800 text-center space-y-6">
+                <div>
+                    <h2 class="text-2xl font-black text-white" id="contactTitle">اتصل بنا</h2>
+                    <p class="text-zinc-400 text-xs mt-1" id="contactSub">تواصل معي عبر وسائل التواصل الاجتماعي الرسمية</p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                    
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/baraamedfouni40/" target="_blank" rel="noopener noreferrer" 
+                       class="bg-zinc-900/80 hover:bg-zinc-800 p-4 rounded-2xl border border-zinc-800 flex flex-col items-center justify-center gap-2.5 transition-all group active:scale-95">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white text-lg shadow-md group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <span class="font-extrabold text-xs text-zinc-300">إنستغرام</span>
+                    </a>
+
+                    <!-- X / Twitter -->
+                    <a href="https://x.com/baraamedfouni40" target="_blank" rel="noopener noreferrer" 
+                       class="bg-zinc-900/80 hover:bg-zinc-800 p-4 rounded-2xl border border-zinc-800 flex flex-col items-center justify-center gap-2.5 transition-all group active:scale-95">
+                        <div class="w-10 h-10 rounded-xl bg-black border border-zinc-700 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </div>
+                        <span class="font-extrabold text-xs text-zinc-300">إكس</span>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/profile.php?id=61591693738243&locale=ar_AR" target="_blank" rel="noopener noreferrer" 
+                       class="bg-zinc-900/80 hover:bg-zinc-800 p-4 rounded-2xl border border-zinc-800 flex flex-col items-center justify-center gap-2.5 transition-all group active:scale-95">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white text-lg shadow-md group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </div>
+                        <span class="font-extrabold text-xs text-zinc-300">فيسبوك</span>
+                    </a>
+
+                    <!-- Reddit -->
+                    <a href="https://www.reddit.com/user/No-Storm6223/?screen_view_count=4&ext-referrer=SEO" target="_blank" rel="noopener noreferrer" 
+                       class="bg-zinc-900/80 hover:bg-zinc-800 p-4 rounded-2xl border border-zinc-800 flex flex-col items-center justify-center gap-2.5 transition-all group active:scale-95">
+                        <div class="w-10 h-10 rounded-xl bg-orange-600 flex items-center justify-center text-white text-lg shadow-md group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-reddit-alien"></i>
+                        </div>
+                        <span class="font-extrabold text-xs text-zinc-300">ريديت</span>
+                    </a>
+
+                    <!-- Gmail -->
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=baraamedfouni40@gmail.com" target="_blank" rel="noopener noreferrer" 
+                       class="bg-zinc-900/80 hover:bg-zinc-800 p-4 rounded-2xl border border-zinc-800 flex flex-col items-center justify-center gap-2.5 transition-all group col-span-2 sm:col-span-1 active:scale-95">
+                        <div class="w-10 h-10 rounded-xl bg-zinc-950 border border-zinc-700 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6Z" fill="#E0E0E0"/>
+                                <path d="M20 4L12 11L4 4H20Z" fill="#EA4335"/>
+                                <path d="M4 4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H6V9L12 14L18 9V20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4H4Z" fill="#1A73E8"/>
+                                <path d="M18 20H20C21.1 20 22 19.1 22 18V6L18 9.5V20Z" fill="#4CAF50"/>
+                                <path d="M4 4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H6V9.5L2 6Z" fill="#FFC107"/>
+                            </svg>
+                        </div>
+                        <span class="font-extrabold text-xs text-zinc-300">جيميل</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Floating Capsule Dock Navigation Bar -->
+    <footer class="fixed bottom-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+        <nav class="sop-pill rounded-full p-1.5 flex items-center gap-1 shadow-2xl border border-zinc-800/90 pointer-events-auto">
+            <a href="#hero" onclick="setActiveNav(this)" class="nav-dock-item px-5 py-2 rounded-full text-xs font-black bg-white text-zinc-950 transition-all">
+                <span id="navHomeText">الرئيسية</span>
+            </a>
+            <a href="#projects" onclick="setActiveNav(this)" class="nav-dock-item px-5 py-2 rounded-full text-xs font-bold text-zinc-400 hover:text-white transition-all">
+                <span id="navProjectsText">مشاريعي</span>
+            </a>
+            <a href="#ai-chat" onclick="setActiveNav(this)" class="nav-dock-item px-5 py-2 rounded-full text-xs font-bold text-zinc-400 hover:text-white transition-all">
+                <span id="navAiText">شات AI</span>
+            </a>
+            <a href="#contact" onclick="setActiveNav(this)" class="nav-dock-item px-5 py-2 rounded-full text-xs font-bold text-zinc-400 hover:text-white transition-all">
+                <span id="navContactText">اتصل بنا</span>
+            </a>
+        </nav>
+    </footer>
+
+    <!-- Language Selection Modal -->
+    <div id="languageModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="sop-card-bg border border-zinc-800 rounded-3xl p-6 w-full max-w-md shadow-2xl relative">
+            <button onclick="toggleLanguageModal()" class="absolute top-4 left-4 text-zinc-400 hover:text-white text-lg w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-base font-black mb-1 flex items-center gap-2 text-sopBlue">
+                <i class="fa-solid fa-globe"></i> اختر اللغة / Choose Language
+            </h3>
+            <p class="text-zinc-400 text-xs mb-4">سيتم تغيير اللغة واتجاه الصفحة فوراً</p>
+
+            <div class="grid grid-cols-2 gap-2 max-h-[60vh] overflow-y-auto pr-1">
+                <button onclick="selectLanguage('ar')" class="p-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 font-bold text-xs">🇸🇦 العربية</button>
+                <button onclick="selectLanguage('en')" class="p-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 font-bold text-xs">🇺🇸 English</button>
+                <button onclick="selectLanguage('fr')" class="p-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 font-bold text-xs">🇫🇷 Français</button>
+                <button onclick="selectLanguage('es')" class="p-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 font-bold text-xs">🇪🇸 Español</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Game Modal -->
+    <div id="addGameModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="sop-card-bg border border-zinc-800 rounded-3xl p-6 w-full max-w-md shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 left-4 text-zinc-400 hover:text-white text-lg w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-base font-black mb-1 flex items-center gap-2 text-sopBlue" id="modalTitle">
+                <i class="fa-solid fa-plus"></i> إضافة لعبة جديدة
+            </h3>
+            <p class="text-zinc-400 text-xs mb-4" id="modalSub">أدخل رابط المشروع أو رقم المشروع الخاص بك على سكراتش:</p>
+
+            <div id="modalAlert" class="hidden mb-3 p-3 rounded-xl bg-red-950/80 border border-red-800 text-red-200 text-xs flex items-center gap-2">
+                <i class="fa-solid fa-circle-exclamation shrink-0 text-sm"></i>
+                <span id="modalAlertText"></span>
+            </div>
+
+            <form onsubmit="handleAddGame(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-zinc-300 mb-1.5" id="urlLabel">رابط اللعبة أو ID:</label>
+                    <input type="text" id="scratchUrlInput" placeholder="مثال: https://scratch.mit.edu/projects/123456789/" 
+                           class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-sopBlue">
+                </div>
+
+                <div class="flex items-center justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-bold" id="cancelBtnText">
+                        إلغاء
+                    </button>
+                    <button type="submit" class="sop-glow-btn px-5 py-2.5 rounded-xl text-xs font-black cursor-pointer" id="submitGameBtnText">
+                        إضافة اللعبة
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Play Game Modal -->
+    <div id="playGameModal" class="fixed inset-0 bg-black/90 backdrop-blur-xl z-50 hidden flex items-center justify-center p-4">
+        <div class="sop-card-bg border border-zinc-800 rounded-3xl p-4 w-full max-w-4xl shadow-2xl relative flex flex-col h-[80vh]">
+            <div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-800">
+                <h3 id="playGameTitle" class="font-black text-sm text-sopBlue flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad"></i> <span>تشغيل اللعبة</span>
+                </h3>
+                <button onclick="closePlayModal()" class="text-zinc-400 hover:text-white text-lg w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="flex-grow w-full h-full bg-black rounded-2xl overflow-hidden relative">
+                <iframe id="gameIframe" src="" class="w-full h-full border-0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let savedProjects = JSON.parse(localStorage.getItem('baraa_scratch_projects') || '[]');
+        let chatConversationHistory = [];
+        let currentLanguage = 'ar';
+
+        const translations = {
+            ar: {
+                currentLangLabel: 'En',
+                greetingText: 'مرحباً، اسمي',
+                heroName: 'براء',
+                heroSub: 'مطور ألعاب | صانع محتوى | مبرمج',
+                exploreBtnText: 'إستكشف مشاريعي',
+                watermarkText: 'صنع بواسطة Sop',
+                projectsTitle: 'مشاريعي',
+                projectsSub: 'قائمة بالألعاب والمشاريع التفاعلية الخاصة بي',
+                addGameBtnText: 'إضافة لعبة',
+                emptyTitle: 'لا توجد مشاريع مضافة حالياً',
+                emptySub: 'اضغط على زر (+ إضافة لعبة) لإضافة أول لعبة خاصة بك بسهولة',
+                emptyBtnText: 'إضافة لعبة الآن',
+                aiTitle: 'شات براء AI',
+                aiSub: 'المساعد الذكي لبراء للإجابة عن أسئلة الموقع والبرمجة',
+                resetChatText: 'إعادة الشات',
+                welcomeMsg: 'أنا **المساعد الذكي براء** 🤖. كيف يمكنني مساعدتك اليوم بخصوص الموقع أو ألعاب سكراتش؟',
+                typingText: 'جاري صياغة الإجابة...',
+                contactTitle: 'اتصل بنا',
+                contactSub: 'تواصل معي عبر وسائل التواصل الاجتماعي الرسمية',
+                navHomeText: 'الرئيسية',
+                navProjectsText: 'مشاريعي',
+                navAiText: 'شات AI',
+                navContactText: 'اتصل بنا',
+                modalTitle: 'إضافة لعبة جديدة',
+                modalSub: 'أدخل رابط المشروع أو رقم المشروع الخاص بك على سكراتش:',
+                urlLabel: 'رابط اللعبة أو ID:',
+                cancelBtnText: 'إلغاء',
+                submitGameBtnText: 'إضافة اللعبة'
+            },
+            en: {
+                currentLangLabel: 'Ar',
+                greetingText: "Hello, my name is",
+                heroName: 'Baraa',
+                heroSub: 'Game Developer | Content Creator | Programmer',
+                exploreBtnText: 'Explore My Projects',
+                watermarkText: 'Created by Sop',
+                projectsTitle: 'My Projects',
+                projectsSub: 'List of my interactive games and projects',
+                addGameBtnText: 'Add Game',
+                emptyTitle: 'No projects added yet',
+                emptySub: 'Click the (+ Add Game) button to easily add your first project',
+                emptyBtnText: 'Add Game Now',
+                aiTitle: 'Baraa AI Chat',
+                aiSub: 'Smart assistant for site navigation and programming inquiries',
+                resetChatText: 'Reset Chat',
+                welcomeMsg: 'I am **Baraa AI Assistant** 🤖. How can I help you today with the website or Scratch games?',
+                typingText: 'Formulating response...',
+                contactTitle: 'Contact Us',
+                contactSub: 'Connect with me through official social channels',
+                navHomeText: 'Home',
+                navProjectsText: 'Projects',
+                navAiText: 'AI Chat',
+                navContactText: 'Contact',
+                modalTitle: 'Add New Game',
+                modalSub: 'Enter your Scratch project link or project ID:',
+                urlLabel: 'Game URL or ID:',
+                cancelBtnText: 'Cancel',
+                submitGameBtnText: 'Add Game'
+            }
+        };
+
+        function setActiveNav(element) {
+            document.querySelectorAll('.nav-dock-item').forEach(item => {
+                item.className = 'nav-dock-item px-5 py-2 rounded-full text-xs font-bold text-zinc-400 hover:text-white transition-all';
+            });
+            element.className = 'nav-dock-item px-5 py-2 rounded-full text-xs font-black bg-white text-zinc-950 transition-all';
+        }
+
+        function toggleLanguageModal() {
+            const modal = document.getElementById('languageModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function selectLanguage(langCode) {
+            currentLanguage = langCode;
+            const htmlTag = document.documentElement;
+            
+            if (langCode === 'ar') {
+                htmlTag.setAttribute('dir', 'rtl');
+                htmlTag.setAttribute('lang', 'ar');
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+                htmlTag.setAttribute('lang', langCode);
+            }
+
+            const langData = translations[langCode] || translations['en'];
+            for (let key in langData) {
+                const el = document.getElementById(key);
+                if (el) {
+                    if (el.tagName === 'INPUT') {
+                        el.placeholder = langData[key];
+                    } else {
+                        el.innerText = langData[key];
+                    }
+                }
+            }
+
+            toggleLanguageModal();
+        }
+
+        function openModal() {
+            document.getElementById('addGameModal').classList.remove('hidden');
+            document.getElementById('modalAlert').classList.add('hidden');
+            document.getElementById('scratchUrlInput').value = '';
+        }
+
+        function closeModal() {
+            document.getElementById('addGameModal').classList.add('hidden');
+        }
+
+        function extractProjectId(input) {
+            const trimmed = input.trim();
+            const match = trimmed.match(/projects\/(\d+)/);
+            if (match) return match[1];
+            if (/^\d+$/.test(trimmed)) return trimmed;
+            return null;
+        }
+
+        function handleAddGame(event) {
+            event.preventDefault();
+            const inputVal = document.getElementById('scratchUrlInput').value;
+            const projectId = extractProjectId(inputVal);
+
+            if (!projectId) {
+                const alertBox = document.getElementById('modalAlert');
+                document.getElementById('modalAlertText').innerText = 'يرجى إدخال رابط مشروع سكراتش صحيح أو ID مكون من أرقام.';
+                alertBox.classList.remove('hidden');
+                return;
+            }
+
+            const newProject = {
+                id: projectId,
+                title: `لعبة سكراتش #${projectId}`,
+                date: new Date().toLocaleDateString('ar-EG')
+            };
+
+            savedProjects.unshift(newProject);
+            localStorage.setItem('baraa_scratch_projects', JSON.stringify(savedProjects));
+            renderProjects();
+            closeModal();
+        }
+
+        function deleteProject(id) {
+            savedProjects = savedProjects.filter(p => p.id !== id);
+            localStorage.setItem('baraa_scratch_projects', JSON.stringify(savedProjects));
+            renderProjects();
+        }
+
+        function playProject(id, title) {
+            const modal = document.getElementById('playGameModal');
+            const iframe = document.getElementById('gameIframe');
+            const titleEl = document.getElementById('playGameTitle');
+
+            iframe.src = `https://scratch.mit.edu/projects/${id}/embed`;
+            titleEl.querySelector('span').innerText = title;
+            modal.classList.remove('hidden');
+        }
+
+        function closePlayModal() {
+            const modal = document.getElementById('playGameModal');
+            const iframe = document.getElementById('gameIframe');
+            iframe.src = '';
+            modal.classList.add('hidden');
+        }
+
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            const emptyState = document.getElementById('emptyProjectsState');
+
+            if (savedProjects.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = savedProjects.map(p => `
+                <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-sopBlue/50 transition-all flex flex-col justify-between p-4 group">
+                    <div class="aspect-video bg-zinc-950 rounded-xl overflow-hidden mb-3 relative border border-zinc-800">
+                        <img src="https://uploads.scratch.mit.edu/get_image/project/${p.id}_480x360.png" 
+                             alt="${p.title}" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                             onerror="this.src='https://placehold.co/480x360/18181c/3b82f6?text=Scratch+Game'">
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-extrabold text-xs text-white line-clamp-1">${p.title}</h3>
+                        <p class="text-[10px] text-zinc-500 font-bold">${p.date}</p>
+                    </div>
+                    <div class="flex items-center gap-2 pt-3 mt-2 border-t border-zinc-800/80">
+                        <button onclick="playProject('${p.id}', '${p.title}')" class="sop-glow-btn flex-grow py-2 rounded-xl text-xs font-extrabold flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-play text-[10px]"></i> <span>تشغيل</span>
+                        </button>
+                        <button onclick="deleteProject('${p.id}')" class="bg-zinc-950 hover:bg-red-950 text-zinc-400 hover:text-red-400 p-2 rounded-xl border border-zinc-800 transition-colors cursor-pointer">
+                            <i class="fa-solid fa-trash text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function handleChatSubmit(event) {
+            event.preventDefault();
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            appendChatMessage('user', message);
+            input.value = '';
+
+            document.getElementById('chatTypingIndicator').classList.remove('hidden');
+
+            setTimeout(() => {
+                document.getElementById('chatTypingIndicator').classList.add('hidden');
+                let botResponse = generateAiResponse(message);
+                appendChatMessage('bot', botResponse);
+            }, 800);
+        }
+
+        function generateAiResponse(query) {
+            const lower = query.toLowerCase();
+            if (lower.includes('من انت') || lower.includes('مين انت') || lower.includes('اسمك')) {
+                return 'أنا **المساعد الذكي براء** 🤖، مساعد شخصي في موقع براء لشرح الألعاب وكيفية استخدام سكراتش وتصفح الموقع!';
+            }
+            if (lower.includes('اضافة لعبة') || lower.includes('كيف اضيف') || lower.includes('اضيف')) {
+                return 'يمكنك إضافة لعبة بسهولة بالضغط على زر **(+ إضافة لعبة)** في قسم مشاريعي، ثم وضع رابط مشروع سكراتش الخاص بك!';
+            }
+            if (lower.includes('تواصل') || lower.includes('انستغرام') || lower.includes('فيسبوك') || lower.includes('جيميل')) {
+                return 'يمكنك التواصل مع براء مباشرة عبر روابط التواصل في أسفل الصفحة (إنستغرام، إكس، فيسبوك، ريديت، وجيميل)!';
+            }
+            return `شكراً لسؤالك! بخصوص "${query}"، يسعدني مساعدتك دائماً في تصفح ألعاب سكراتش أو التواصل مع براء!`;
+        }
+
+        function appendChatMessage(sender, text) {
+            const container = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'flex gap-3 max-w-[90%] items-start';
+
+            if (sender === 'user') {
+                msgDiv.innerHTML = `
+                    <div class="bg-sopBlue text-white p-3.5 rounded-2xl rounded-tl-none leading-relaxed ms-auto">
+                        <p>${text}</p>
+                    </div>
+                `;
+            } else {
+                msgDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-xl bg-sopBlue text-white flex items-center justify-center font-black shrink-0">
+                        ب
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 text-zinc-200 p-3.5 rounded-2xl rounded-tr-none leading-relaxed space-y-1">
+                        <p class="font-extrabold text-sopBlue">المساعد براء 🤖</p>
+                        <p>${text}</p>
+                    </div>
+                `;
+            }
+
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function clearChatHistory() {
+            const container = document.getElementById('chatMessages');
+            container.innerHTML = `
+                <div class="flex gap-3 max-w-[90%] items-start">
+                    <div class="w-8 h-8 rounded-xl bg-sopBlue text-white flex items-center justify-center font-black shrink-0">
+                        ب
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 text-zinc-200 p-3.5 rounded-2xl rounded-tr-none leading-relaxed space-y-1">
+                        <p class="font-extrabold text-sopBlue">مرحباً بك! 🎮</p>
+                        <p>أنا **المساعد الذكي براء** 🤖. كيف يمكنني مساعدتك اليوم بخصوص الموقع أو ألعاب سكراتش؟</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.onload = function() {
+            renderProjects();
+        };
+    </script>
+</body>
+</html>
